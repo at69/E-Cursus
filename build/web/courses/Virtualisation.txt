@@ -1,0 +1,84 @@
+Virtualisation: techniques matérielles/logicielles permettant de faire fonctionner sur 1 machine plusieurs OS
+ou applis (= applis publiées) en les séparant des unes des autres comme des machines différentes.
+
+Logiciels: Microsoft Hyper-V, Citrix Xen, Vmware, VirtualBox
+
+Ce que l'on peut virtualiser:
+- OS (Virtual Machine: matériel et BIOS virtualisés, le tout dans un dossier) 
+- Application (streaming) - Stockage (logique +tot que physique) - Réseau - Poste de travail
+
+Fichiers vmware:
+- .vmdk: fichier de stockage
+- .nvram: bios virtuel
+- .log: fichier de log
+- .vmx: fichier de config
+- .vmsd: snapshot
+
+Niveaux de privilège: 0: OS Kernel | 1-2: OS Services | 3: Applis
+Types de privilège: Current | Descriptor | Requested  Privilege Level
+
+Virtual Machine Monitor: 1/vm, régulateur situé entre vm et VMkernel. Décide quelles ressources sont à éxécuter
+			sur couche physique ou par VMkernel (protection du CPU). Correlation entre mémoire phy
+			et virtuelle.
+
+3 générations de virtu:
+	1. Full Virtualization: 
+		communications (binaire) interceptées et modifiées à la volée 
+		pour faire croire qu'elle tourne au niveau 0
+		Tout matériel émulé. +VM isolée, resources accordées gérables. -Consommateur de perfs.
+	2. Para-Virtualization:
+		os virtu modifié (-) pour ne plus avoir à comm au niveau 0 (+). 
+		API pour comm au VMM qui gère comm entre VM et hardware.
+	3. Hardware-assisted Virtualization:
+		le processeur de l'hôte contient des extensions permettant d'émuler les opérations privilégiées
+		dans le guest à un niv1 virtuel(+). On parle de fonctionnalité de virtu native au niveau matériel. 
+		A activer ds BIOS.
+
+Server-side vs Client-side => vm sur un serveur (remote) VS vm sur la machine cliente
+Avantages VIRTU: - coûts (- serveurs/réseau/câbles/élec/clim/espace)
+		 - fiabilité (backup/sécurité/inventaire/upgrade facile, cycle de vie étendu car obsolecence --)
+CAPEX: Capital Expenditure: dépenses, frais, investissements. OPEX: Operational Expenditure: coûts humains.
+
+------------------------------------------------------------------------------------------------------------------
+Projet de virtu: quel est l'investissement (TCO) et pour quel ROI (Return On Investment)?
+Nécessité: périmètre, cadre strict puis bon audit préliminaire (=étude de faisabilité).
+
+3 types d'approche pr définir le périmètre:
+	- métier: virtualiser un dpt peu dépendant de l'informatique.
+		+facile regrouper les acteurs +virtualisation appli par appli possible (petit à petit)
+		-le dpt va se demander pq eux, tous devront collaborer, service peut être multisite
+	- logique: virtualiser une entité uniquement (une salle machine, tous les linux, etc.)
+		+flexible, périmètre réduit
+		-il n'y a pas forcémment d'environnement logique déjà présent, pas tjs facile de regrouper
+	- physique: virtualiser un site donné.
+		+simple, périmètre clair, concret
+		-contraignante suivant la taille du site, le but de la virtu est de s'abstraire du physique...
+Best solution: mélange des trois. Ex: dans le datacenter fr (physique), les machines vieilles de 4 ans (logique)
+du service business (métier).
+
+2 types d'audit:
+	- technique: définit le périmètre judicieusement. 
+			Inventaire, hétérogénéité du parc (OS, serveurs, réseau, stockage)
+	- organisationnel: comprendre l'enjeu au delà du technique. On ne doit pas bouleverser ce qui est déjà 
+			établit mais l'améliorer.
+
+3 types d'architectures:
+	- cost oriented: meilleur rapport qualité/prix. 4 éléments: CPU, mémoire, stockage et réseau.
+	- performance oriented: plus rapide, puissant => machines dernière gen, fibre optique...
+	- availability oriented: service tjs fonctionnel. Tolérance panne, haute dispo (redondance, multipathing)
+		Multipathing= plusieurs cartes réseau.
+------------------------------------------------------------------------------------------------------------------
+VMKernel: gère ressources physiques + utilisation + répartition (CPU, mémoire, stock)+ tâches de virtu sur l'hôte.
+Service Console (COS): interface de comm ac VMkernel. Permet comm avec matériel non critique (CD, USB, etc.).
+VMtools: outils pour améliorer comm entre host et guests.
+VMware vSphere Hypervisor (ex ESXi): soft d'entreprise qui stocke et fait tourner les VMs avec un hyperviseur ESXi
+VMware vCenter Server: serveur d'administration de ce qu'il y a dans l'hyperviseur.
+VMware vSphere Client: interface de connection à distance à vCenter Server ou l'hyperviseur.
+vMotion: migrer à chaud des VMs d'un serveur à l'autre sans coupure (les fichiers conf/vm st sur NAS/SAN).
+storage vMotion: passer d'un espace de stockage à un autre sans coupure.
+
+Distributed Resources Scheduler: migre dynamiquement les VMs pour répartir la charge.
+Distributed Power Management: met en veille les serveurs peu utilisés pour économiser de l'énergie.
+
+VMware High Availability: quand un serveur plante, les VMs dessus sont redémarrées sur un autre serveur.
+

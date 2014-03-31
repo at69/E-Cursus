@@ -1,0 +1,77 @@
+Pour avoir un DC fonctionnel avec un lien faible (Wan très faible)
+		=> faire un RODC car il ne se réplique pas
+			avec un scheduler de la synchronisation
+
+Qu'est-ce qu'un AD Schéma ???
+		c'est l'arborescence LDAP des objets (user, computers)
+			objets par défaut insupprimable (Users, Computers, BuiltIn, Domain Controllers)
+			objets créables : OU, RODC
+
+Vérifier qu'un AD est fonctionnel :
+		si ya pas d'erreur dans les logs
+			l'AD Best Practice Analyser (le 3ème onglet dans l'AD Domain Service
+
+Dans une grande foret, pk ne pas mettre tous les DC avec des catalog globaux ?
+		perte de performance
+		dès qu'une modif d'un domain est fait, il faut le répliké de partout
+			et soucis de place (plus une foret est grande, un catalog global prend de place)
+
+Peut-on connecter à un AD d'autres Services d'annuaires ???
+		oui car AD est sous protocole LDAP (comme tous les otres annuaires)
+			exemple : exchange s'appui sur AD, IDirectory (système Novel), SAP (connecteur d'ERP), Domino (messagerie LDAP de IBM), OpenLDAP sous linux
+
+Qu'est-ce qu'un AD et LDAP ???
+		AD : service d'annuaire/dictionnaire basé sur le protocole LDAP avec une base de données sous forme de schéma LDAP (fournit authentification grâce à Kerberos, police de droit d'accès...) 
+		LDAP : protocole de requètage d'annuaire (Lightweight Directory Access Protocole)
+
+Les fichiers dune base de données AD 
+		edb.log : fichier de log (enregistrement de toutes les transactions)
+		edb.chk : fichier de checkpoint après transaction (permet de restorer l'AD)
+		SYSVOL/ : contient toutes les polices de sécurité et les GPO,  et tous les objets (audit, objet public ...) qui s'applique sur tous les DC (dossier répliqué sur les otres DC)
+		NTDS/NTDS.dit : tous les objet de la base
+		netlogon/ : dossier qui s'occupe de l'authentifiaction
+		les edbres0000x.jrs : pas touche (enregistrement des transactions si ya plus de place ailleur)
+
+Les 3 partitions dans un context de nomage :
+		le domain (nom de domaine)
+		la configuration du domain
+		le schéma AD
+
+Les 5 roles (FSMO) de l'AD :
+		le master du schéma (un par foret) : il controle les modif du schéma, il a le catalog global
+		le maitre d'attribution des noms de domain (un par foret) : il gère l'ajout/suppr des noms de domaine (role cumulé avec le role précédent)
+		l'émulateur PDC (un par domain) : gère la compatibilité avec Windows 2000, il est aussi serveur NTP
+		le maitre RID (un par domain) : il fournit les identifiants uniques aux autres DC
+		le maitre d'infrastructure (un par domain) : il synchronise les changement interdomain
+
+Qu'est-ce qu'un site ???
+		une localisation géographique (généralement un site, un sous-réseau) => relation : 1 n
+
+Qu'est-ce qu'une foret ???
+		une foret permet de gérer plusieurs nom de domains de niveaux 2 différents
+
+Prérequis pour un AD ???
+		adresse IP fixe
+		un système Windows Server
+
+Qu'est qu'une OU ???
+		un container d'objets AD
+
+Qu'est qu'une GPO ??? Dans quel ordre sont-elles appliquées ???
+		Group Policy Object : un regroupement de règle que l'on applique à un groupe d'objet AD
+			GPO coté client : type ordinateur (démarrage) ou type utilisateur (logon)
+			    coté server : GPO custom sapplik avant la GPO par défaut (si ya rien elle sapplik)
+
+Comment restreindre l'utilisation d'applications sur les machines client ???
+		avec une Software Restriction Policy (c'est une GPO)
+
+Différence entre OU et container :
+		une OU est un type de container
+		une OU peut contenir un container mais pas l'inverse
+
+2 types d'authenfication via le SAMAccountName:
+		locale : base SAM
+		à distance (centralisé) : un annuaire 
+
+un controlleur de domaine :
+		un service DNS + l'AD DS

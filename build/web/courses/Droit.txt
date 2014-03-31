@@ -1,0 +1,56 @@
+données à caractères personnels : données permettant de nous identifier facilement
+données sensibles : informations qui relèvent de la sphère intime (religion, philosophique, orientation sexuelle, judiciaire, médical)
+capacité juridique : possibilité d'un invdividu à contracter (par exemple faire un chèque : il faut la carte d'identité)
+
+conservation de données personnelles autorisées si :
+	- le responsable du traitement a obtenu l'accord exprès de l'individu (exemplaire écrit signé)
+	- le traitement est nécessaire à la sauvegarde de la vie humaine mais auquel la personne ne peut donner son consentement par suite d'un incapacité juridique ou matérielle
+	- un groupement religieux, philosophique, politique ou syndical tient la liste de ses membres
+	- il existe un motif d'intérêt public
+	- le traitement est nécesaire à la constatation, l'exercice ou à la défense d'un droit en justice
+
+collecte illicite : 300 000 € et 5 ans d'emprisonnement (fois 5 pour les personnes morales)
+
+En cas de conservation, il doit avoir le respect :
+	- de l'exactitude
+	- de l'adéquation (garder l'exactitude tout au long du traitement)
+	- de la pertinence
+	- de la légitimité
+	- de non excessivité
+	- de la complétude (toutes les infos nécessaire pour le meilleur traitement)
+	- du maintien en condition opérationnelle (mettre à jour, corriger et compléter les données)
+
+Loi du 6 janvier 1978 : loi dites informatique et liberté. 
+Texte fondateur du droit de la protection des données récent, évolue avec la technologie
+en cas de conservation => déclaration à la CNIL
+
+données médicales et judicières : droit de correction indirecte
+
+sources de contencieux : 33% pour les formalités préalables (déclarations pas faite, infranction sur la finalité du traitement, collecte frauduleuse)
+
+Si correspondant informatique et liberté, alors déclaration à la CNIL dispensé (attention l'autorisation pour les données sensibles reste obligatoire)
+
+identité numérique : données numériques permettant d'identifier une personne (adresse IP, mail, données génétiques et biométriques numérisées)
+
+droits sur leurs données : droit d'accès, de rectification (peut être indirecte pour les données judiciaires, médicales)
+
+données médicales : seules les médecins (secret professionnel)
+données judiciaires : Procureur de la République
+
+infos préalables : la finalité explicite, qui y aura accès, le responsable du fichier (dans une entreprise, c'est le maître des fichiers)
+
+accès aux données : délais de 2 mois maximum après la demande
+rectification des données : pas de délais légal, donc jurisprudence qui fixe un délais "raisonnable"
+
+autorisation de la CNIL pour : les données de géolocalisations, données biométriques, données sensibles, données judiciaires, vidéosurveillance
+
+géolocalisation uniquement pour : la sécurité (employer ou marchandises), une meilleure allocation des moyens, le suivi et facturation d'une prestation ou le suivi du temps de travail
+Interdiction de géolocaliser pour constituer des infractions
+
+la CNIL peut :
+	– arranger un dialogue avec le responsable du traitement
+	– procéder à un contrôle sur pièces ou sur place
+	– mettre en demeure les responsables
+	– ouvrir une procédure de sanction
+	– dénoncer les faits au procureur de la République
+	– classer la plainte sans suite

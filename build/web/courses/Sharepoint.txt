@@ -1,0 +1,86 @@
+Roues :
+		- Contenu (office, lync etc)
+		- Sites (privé, public, extra/intranet)
+		- Communauté
+		- Recherche
+		- BI
+		- Application
+		
+Web Application:
+		5 zones max ->default, extra, intra, internet, custom
+		
+Taille par dafault 50Mo -> Maxi 2 Go
+
+Explicite => Une Collection
+Implicite => Plusieurs Collections
+
+SI coupure d'héritage la fille copie les droits de la mère. Donc même droit repliqueralors que plus de lien.
+
+Important:
+Service de métadonné gérées
+
+LOB : Ligne of buisness, interface morefriendly. Utilisation d'une bdd d'ERP ou BI pour l'exploiter depuis une interface sharepoint
+
+SQLAdb =>
+OWA(Office Web Acces) != OWA acces (Outlook web Acces)
+NoteOffice Permet de faire plusou moins les mêmes chose qu'Azendoo sur les notes
+
+2 types d'installation:
+-Installation autonome 1-Tiers 
+-Complete segmentation des services 3 tiers (loique dans notre cas)
+
+Où mettrel'image:
+C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\IMAGES
+URL
+/_layouts/images/nomimage.ext
+
+Bibliothéque = document, fichier
+List= calendrier,contact, enquete
+
+Arborescence
+Collection -> sites -> Liste
+
+####################################################
+				QUESTIONS
+####################################################
+
+Architecture Logique SharePoint:
+	WebApp=>Collection de site(principal)=>Autres Collection de site=>Sites
+
+Lors de la création d'une collection de site créer la base "contentDatabase"
+
+Chemin d'acces gérés:
+	- Inclusion Générique (ex: départment cf slides 13 du ppt 02)
+	- Inclusion Explicite (un site)
+
+WebPolicy?
+	-Definir des droits uniquement sur la webApp.
+	- Definir des priviléges pour les utilisateurs
+
+Best Practices pour utilisateur?
+	- On créer un groupe sur la collection de site,puis on donne les droits au groupe.
+	- Plus propre, car gére les droit sur l'AD
+	
+Application de service:
+	- Groupe de proxy?
+		-> Regroupe plusieurs connexions aux Applications de service
+	- Proxies:
+		-> Contrôle les interactions entre l’Application Web et l’Application de Service.
+	- Toujours penser à activer le service après (BIEN V2RIFIER)
+
+Métadonnées:
+	- Tooxonomie : Gerer par les admins
+	- Folklosomie : Gérer par les users
+
+OWA:
+	- Client lourd besoin des installations office + SilverLight
+	
+DeveloppementDashBoard:
+	- WebAnalytic (On[ToujoursActif]/OFF/OnDemand[Besoin de cliquer pour faire les stats et les montrer]) cf les commande shell
+	
+BCS:
+	Lob Application => Application de service
+	
+Analyseur d'Intégrité:
+	Permet de vérifier si les best practice vérifier, si pas d'erreur de config. Permet de faire des corrections automatique.
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="UsersWebService">
+      <implementation-class>com.ecursus.soap.UsersWebService</implementation-class>
+    </service>
+    <service name="CoursesWebService">
+      <implementation-class>com.ecursus.soap.CoursesWebService</implementation-class>
+    </service>
+    <service name="CertificatesWebService">
+      <implementation-class>com.ecursus.soap.CertificatesWebService</implementation-class>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>
